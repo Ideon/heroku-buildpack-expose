@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+# fail fast
+set -e
+
+# debug
+# set -x
+
+# clean up leaking environment
+unset GIT_DIR
+
+# parse and derive params
+BUILD_DIR=$1
+CACHE_DIR=$2
+ENV_DIR=$3
+BUILDPACK_DIR="$(dirname $(dirname $0))"
+
+if [ -f "$ENV_DIR/THEME" ]
+then
+  THEME="$(cat $ENV_DIR/THEME)"
+  echo "Exposing THEME '$THEME'"
+  echo "export THEME=$THEME" >> $BUILDPACK_DIR/export
+fi
+
+exit 0

@@ -20,6 +20,8 @@ then
   THEME="$(cat $ENV_DIR/THEME)"
   echo "Exposing THEME '$THEME'"
   echo "export THEME=$THEME" >> $BUILDPACK_DIR/export
+  exit 0
 fi
 
-exit 0
+echo "Aborting: THEME environment variable not presentt."
+exit 1 
